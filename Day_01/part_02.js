@@ -7,7 +7,7 @@ const lines = fs
   .split(/\n/); // puts them into an array
 
 console.log(lines);
-const regex = /[0-9]/g;
+const NumberRegex = /[0-9]/g;
 var acc = 0;
 const numberMap = {
   zero: 0,
@@ -24,14 +24,14 @@ const numberMap = {
 
 const replaceWordNumbers = (str) => {
   Object.keys(numberMap).forEach((key) => {
-    str = str.replace(new RegExp(key + "\\b", "g"), numberMap[key]);
+    str = str.replace(new RegExp("\\b" + key + "\\b", "g"), numberMap[key]);
   });
   return str;
 };
 
 lines.map((line) => {
   const newWordLine = replaceWordNumbers(line);
-  const found = newWordLine.match(regex);
+  const found = newWordLine.match(NumberRegex);
   console.log(found);
   const first = found[0];
   const second = found[found.length - 1];

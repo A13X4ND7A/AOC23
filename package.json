@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "start": "nodemon Day_01/part_02.js"
+    "start": "nodemon Day_01/part_01.js"
   },
   "repository": {
     "type": "git",
