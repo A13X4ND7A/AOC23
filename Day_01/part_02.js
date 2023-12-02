@@ -24,7 +24,7 @@ const numberMap = {
 
 const replaceWordNumbers = (str) => {
   Object.keys(numberMap).forEach((key) => {
-    str = str.replace(new RegExp(key, "g"), numberMap[key]);
+    str = str.replace(new RegExp(key + "\\b", "g"), numberMap[key]);
   });
   return str;
 };
