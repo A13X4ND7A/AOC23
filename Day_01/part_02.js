@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 const lines = fs
-    .readFileSync("Day_01/input.txt", {encoding: "utf-8"})
+    .readFileSync("Day_01/input_test2.txt", {encoding: "utf-8"})
     .replace(/\r/g, "") // remove all \r characters to avoid issues on Windows
     .trimEnd() // Remove ending whitespace
     .split(/\n/); // puts them into an array
@@ -27,28 +27,29 @@ const findMatch = (str) => {
     let keyIndexPairs = [];
     let regex = /[0-9]/g; //looks for 0-9
     let match;
+    let x =0
     while ((match = regex.exec(str)) !== null) {
         keyIndexPairs.push({ value: match[0], index: match.index });
     }
     Object.keys(numberMap).forEach((key) => {
-        let index = str.indexOf(key);
+        let startIndex = 0;
+        while (startIndex < str.length) {
+            let index = str.indexOf(key, startIndex);
             if (index !== -1) {
                 let value = numberMap[key];
-                keyIndexPairs.push({value, index}); // push the value and the index into the array
+                keyIndexPairs.push({ value, index });
+                startIndex = index + key.length;
+            } else {
+                break;
             }
+        }
     });
-    // Sort the 'keyIndexPairs' array in ascending order based on the 'index' property of each element.
     keyIndexPairs.sort((a, b) => a.index - b.index);
-    // Transform each element in 'keyIndexPairs' to a number based on its 'value' property and set this to the 'strArr' array.
     strArr = keyIndexPairs.map(pair => Number(pair.value));
-console.log(strArr)
     const first = strArr[0]
     const last = strArr[strArr.length-1]
     const concatenated = Number(`${first}${last}`);
-    console.log({first}, {last}, {concatenated})
-
-    acc = acc + concatenated
-    console.log({acc}, '')
+    console.log(acc = acc + concatenated)
     return acc
 };
 
