@@ -23,7 +23,7 @@ lines.map((line, index) => {
     const gameNumber = index + 1;
     let gamePlayable = true;
     line
-        .split(';')
+        .split('; ')
         .map(round => {
         const red = extractColorCount(round, 'red');
         const green = extractColorCount(round, 'green');
