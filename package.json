@@ -1,10 +1,10 @@
 {
-  "name": "nodejs-sandbox",
+  "name": "AdventOfCode2023",
   "version": "1.0.0",
-  "description": "",
+  "description": "Advent of Code 2023",
   "main": "index.html",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon Day_/part_01.js"
   },
   "repository": {
     "type": "git",
