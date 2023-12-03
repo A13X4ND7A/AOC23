@@ -1,10 +1,10 @@
 {
   "name": "AdventOfCode2023",
   "version": "1.0.0",
-  "description": "",
+  "description": "Day02",
   "main": "index.html",
   "scripts": {
-    "start": "nodemon Day_01/part_02.js"
+    "start": "nodemon Day_02/part_01.js"
   },
   "repository": {
     "type": "git",
