@@ -6,38 +6,49 @@ const lines = fs
   .trimEnd() // Remove ending whitespace
   .split(/\n/); // puts them into an array
 
-console.log(lines);
-const NumberRegex = /[0-9]/g;
 var acc = 0;
 const numberMap = {
-  zero: 0,
-  one: 1,
-  two: 2,
-  three: 3,
-  four: 4,
-  five: 5,
-  six: 6,
-  seven: 7,
-  eight: 8,
-  nine: 9,
+  zero: '0',
+  one: '1',
+  two: '2',
+  three: '3',
+  four: '4',
+  five: '5',
+  six: '6',
+  seven: '7',
+  eight: '8',
+  nine: '9',
 };
 
-const replaceWordNumbers = (str) => {
+console.log(lines);
+
+ const findMatch = (str) => {
+   let strArr = [];
+   let keyIndexPairs = [];
+   let regex = /[0-9]+/g;
+   let match;
+   while ((match = regex.exec(str)) !== null) {
+     keyIndexPairs.push({ key: match[0], index: match.index });
+   }
   Object.keys(numberMap).forEach((key) => {
-    str = str.replace(new RegExp("\\b" + key + "\\b", "g"), numberMap[key]);
+    let index = str.indexOf(key);
+    if (str.includes(key)){
+      if (index !== -1) {
+        let value = numberMap[key]; // Accessing the value from numberMap
+        keyIndexPairs.push({ value, index });
+        // keyIndexPairs.push({ key, index });
+      }
+      keyIndexPairs.sort((a, b) => a.index - b.index);
+      strArr = keyIndexPairs.map(pair => pair.value);
+
+      }
   });
-  return str;
-};
+   return strArr
+ };
+
 
 lines.map((line) => {
-  const newWordLine = replaceWordNumbers(line);
-  const found = newWordLine.match(NumberRegex);
-  console.log(found);
-  const first = found[0];
-  const second = found[found.length - 1];
-  const newNum = first + second;
-
-  acc = acc + Number(newNum);
-
-  console.log(acc);
+  console.log(findMatch(line));
+  // console.log(newWordLine)
+  // console.log(acc = acc + Number(newWordLine));
 });
