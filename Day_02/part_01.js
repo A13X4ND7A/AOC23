@@ -19,13 +19,12 @@ const extractColorCount = (round, color) => {
     return match ? parseInt(match[1], 10) : 0;
 };
 let acc = 0
-const games = lines.map((line, index) => {
+lines.map((line, index) => {
     const gameNumber = index + 1;
-
     const rounds = line.split(';');
     let gamePlayable = true;
     // Map each round to an object
-    const roundData = rounds.map(round => {
+    rounds.map(round => {
         const red = extractColorCount(round, 'red');
         const green = extractColorCount(round, 'green');
         const blue = extractColorCount(round, 'blue');
@@ -35,10 +34,9 @@ const games = lines.map((line, index) => {
         } else {
             gamePlayable = false
         }
-
     });
     if (gamePlayable === true) {
-         acc = acc + gameNumber
+        acc = acc + gameNumber
         console.log(acc)
     }
 
