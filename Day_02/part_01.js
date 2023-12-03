@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 const lines = fs
-    .readFileSync("Day_02/input.txt", {encoding: "utf-8"})
+    .readFileSync("Day_02/input_test.txt", {encoding: "utf-8"})
     .replace(/\r/g, "") // remove all \r characters to avoid issues on Windows
     .trimEnd() // Remove ending whitespace
     .split(/\n/); // puts them into an array
@@ -21,10 +21,10 @@ const extractColorCount = (round, color) => {
 let acc = 0
 lines.map((line, index) => {
     const gameNumber = index + 1;
-    const rounds = line.split(';');
     let gamePlayable = true;
-    // Map each round to an object
-    rounds.map(round => {
+    line
+        .split(';')
+        .map(round => {
         const red = extractColorCount(round, 'red');
         const green = extractColorCount(round, 'green');
         const blue = extractColorCount(round, 'blue');
@@ -34,7 +34,7 @@ lines.map((line, index) => {
         } else {
             gamePlayable = false
         }
-    });
+    })
     if (gamePlayable === true) {
         acc = acc + gameNumber
         console.log(acc)
