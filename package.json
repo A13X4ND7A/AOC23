@@ -4,7 +4,7 @@
   "description": "Advent of Code 2023",
   "main": "index.html",
   "scripts": {
-    "start": "nodemon Day_03/part_01.js"
+    "start": "nodemon Day_03/part_02.js"
   },
   "repository": {
     "type": "git",
